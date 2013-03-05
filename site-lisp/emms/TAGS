@@ -1,0 +1,646 @@
+
+emms-auto.el,107
+(defvar generated-autoload-file)3,22
+(defvar command-line-args-left)4,55
+(defun generate-autoloads 5,87
+
+emms.el,4995
+(defvar emms-version 41,1587
+(defgroup emms 48,1704
+(defgroup emms-player 54,1821
+(defgroup emms-source 59,1918
+(defcustom emms-player-list 64,2015
+(defcustom emms-show-format 69,2168
+(defcustom emms-repeat-playlist 76,2399
+(defcustom emms-repeat-track 83,2667
+(defcustom emms-track-description-function 89,2832
+(defcustom emms-player-delay 94,3008
+(defcustom emms-playlist-shuffle-function 103,3325
+(defcustom emms-playlist-sort-function 108,3485
+(defcustom emms-sort-lessp-function 113,3637
+(defcustom emms-playlist-buffer-name 120,3886
+(defcustom emms-playlist-default-major-mode 125,4026
+(defcustom emms-playlist-insert-track-function 130,4171
+(defcustom emms-playlist-update-track-function 136,4414
+(defcustom emms-playlist-delete-track-function 144,4762
+(defcustom emms-playlist-source-inserted-hook 150,5014
+(defcustom emms-playlist-selection-changed-hook 156,5197
+(defcustom emms-playlist-cleared-hook 161,5348
+(defcustom emms-track-initialize-functions 168,5567
+(defcustom emms-track-updated-functions 174,5758
+(defcustom emms-player-started-hook 180,5944
+(defcustom emms-player-stopped-hook 186,6089
+(defcustom emms-player-finished-hook 192,6251
+(defcustom emms-player-paused-hook 202,6676
+(defcustom emms-player-seeked-functions 208,6850
+(defvar emms-player-playing-p 215,7065
+(defvar emms-player-paused-p 218,7148
+(defun emms-start 224,7254
+(defun emms-stop 230,7447
+(defun emms-next 236,7575
+(defun emms-next-noerror 246,7877
+(defun emms-previous 266,8491
+(defun emms-random 274,8696
+(defun emms-pause 282,8866
+(defun emms-seek 288,8990
+(defun emms-seek-forward 296,9268
+(defun emms-seek-backward 302,9401
+(defun emms-show 308,9537
+(defun emms-shuffle 322,10125
+(defun emms-sort 330,10343
+(defun emms-toggle-repeat-playlist 338,10549
+(defun emms-toggle-repeat-track 347,10896
+(defun emms-sort-track-name-less-p 356,11214
+(defun emms-ensure-player-playing-p 361,11378
+(defun emms-track 373,11768
+(defun emms-track-type 381,12050
+(defun emms-track-name 385,12144
+(defun emms-track-get 389,12238
+(defun emms-track-set 394,12437
+(defun emms-track-description 398,12567
+(defun emms-track-updated 403,12746
+(defun emms-track-simple-description 408,12917
+(defvar emms-playlist-buffer 426,13578
+(defvar emms-playlist-selected-marker 429,13654
+(defvar emms-playlist-buffer-p 433,13807
+(defun emms-playlist-ensure-playlist-buffer 437,13954
+(defmacro with-current-emms-playlist 442,14136
+(defun emms-playlist-set-playlist-buffer 454,14629
+(defun emms-playlist-new 464,14977
+(defun emms-playlist-current-clear 480,15581
+(defun emms-playlist-clear 490,15945
+(defun emms-playlist-track-at 502,16323
+(defun emms-playlist-next 508,16550
+(defun emms-playlist-previous 522,17059
+(defun emms-playlist-first 537,17663
+(defun emms-playlist-last 552,18166
+(defun emms-playlist-delete-track 566,18592
+(defun emms-playlist-selected-track 572,18771
+(defun emms-playlist-current-selected-track 578,18992
+(defun emms-playlist-select 583,19172
+(defun emms-playlist-select-next 593,19565
+(defun emms-playlist-current-select-next 613,20264
+(defun emms-playlist-select-previous 618,20424
+(defun emms-playlist-current-select-previous 638,21142
+(defun emms-playlist-select-random 643,21314
+(defun emms-playlist-current-select-random 669,22201
+(defun emms-playlist-select-first 674,22365
+(defun emms-playlist-current-select-first 681,22575
+(defun emms-playlist-select-last 686,22738
+(defun emms-playlist-current-select-last 693,22945
+(defun emms-playlist-insert-track 699,23131
+(defun emms-playlist-update-track 705,23379
+(defun emms-playlist-insert-source 711,23583
+(defun emms-playlist-current-insert-source 720,23899
+(defun emms-playlist-tracks-in-region 726,24154
+(defun emms-playlist-track-updated 746,24725
+(defun emms-playlist-simple-insert-track 768,25605
+(defun emms-playlist-simple-update-track 776,25891
+(defun emms-playlist-simple-delete-track 782,26051
+(defun emms-playlist-simple-shuffle 791,26376
+(defun emms-playlist-simple-sort 816,27276
+(defun emms-property-region 836,28022
+(defun emms-shuffle-vector 858,28707
+(defun emms-playlist-save 871,29015
+(defun emms-playlist-save-active 893,29820
+(defun emms-playlist-save-as-m3u 898,30017
+(defun emms-playlist-save-current-as-m3u 926,31124
+(defmacro define-emms-source 943,31692
+(defun emms-source-play 984,33338
+(defun emms-source-add 992,33614
+(defun emms-source-insert 1002,34029
+(defmacro define-emms-combined-source 1010,34354
+(defvar emms-player-stopped-p 1030,34921
+(defun emms-player 1033,35018
+(defun emms-player-get 1054,35867
+(defun emms-player-set 1061,36110
+(defun emms-player-for 1068,36339
+(defun emms-player-start 1081,36759
+(defun emms-player-stop 1094,37215
+(defun emms-player-stopped 1101,37446
+(defun emms-player-pause 1110,37772
+(defun emms-player-seek 1135,38569
+(defun emms-dictionary 1153,39181
+(defun emms-dictionary-type 1157,39269
+(defun emms-dictionary-get 1161,39363
+(defun emms-dictionary-set 1168,39547
+
+emms-info.el,384
+(defgroup emms-info 44,1490
+(defcustom emms-info-auto-update 48,1570
+(defcustom emms-info-asynchronously 55,1833
+(defcustom emms-info-functions 61,2034
+(defvar emms-info-asynchronous-tracks 67,2194
+(defun emms-info-initialize-track 70,2287
+(defun emms-info-really-initialize-track 78,2662
+(defun emms-info-track-file-mtime 98,3506
+(defun emms-info-track-description 106,3738
+
+emms-info-mp3info.el,264
+(defvar emms-info-mp3info-version 38,1335
+(defgroup emms-info-mp3info 42,1499
+(defcustom emms-info-mp3info-coding-system 47,1644
+(defcustom emms-info-mp3info-program-name 52,1799
+(defcustom emms-info-mp3find-arguments57,1944
+(defun emms-info-mp3info 71,2455
+
+emms-info-ogg.el,144
+(defvar emms-info-ogg-version 43,1389
+(defgroup emms-info-ogg 47,1544
+(defun emms-info-ogg-get-comment 53,1709
+(defun emms-info-ogg 59,1852
+
+emms-info-ogginfo.el,170
+(defgroup emms-info-ogginfo 10,172
+(defcustom emms-info-ogginfo-coding-system 15,298
+(defcustom emms-info-ogginfo-program-name 20,453
+(defun emms-info-ogginfo 25,598
+
+emms-lyrics.el,1400
+(defvar emms-lyrics-version 61,1995
+(defgroup emms-lyrics 71,2238
+(defcustom emms-lyrics-display-on-modeline 75,2309
+(defcustom emms-lyrics-display-on-minibuffer 80,2440
+(defcustom emms-lyrics-dir 85,2576
+(defcustom emms-lyrics-display-format 91,2762
+(defcustom emms-lyrics-mode-hook 96,2881
+(defvar emms-lyrics-display-p 103,3025
+(defvar emms-lyrics-alist 106,3095
+(defvar emms-lyrics-timers 110,3227
+(defvar emms-lyrics-start-time 113,3293
+(defvar emms-lyrics-pause-time 116,3357
+(defvar emms-lyrics-elapsed-time 119,3421
+(defvar emms-lyrics-mode-line-string 122,3499
+(defun emms-lyrics-read-file 125,3560
+(defun emms-lyrics-start 163,4846
+(defun emms-lyrics-stop 177,5235
+(defun emms-lyrics-pause 188,5552
+(defun emms-lyrics-seek 204,6052
+(defun emms-lyrics-toggle-display-on-minibuffer 222,6648
+(defun emms-lyrics-toggle-display-on-modeline 232,6992
+(defun emms-lyrics-enable 243,7366
+(defun emms-lyrics-disable 254,7823
+(defun emms-lyrics-toggle 267,8355
+(defun emms-lyrics-set-timer 276,8579
+(defun emms-lyrics-mode-line 290,8929
+(defun emms-lyrics-restore-mode-line 298,9165
+(defun emms-lyrics-display 304,9348
+(defun emms-lyrics-find-lyric 321,9838
+(define-derived-mode emms-lyrics-mode 340,10405
+(defvar emms-lyrics-mode-map345,10565
+(defun emms-lyrics-insert-time 353,10826
+(defun emms-lyrics-next-line 367,11305
+(defun emms-lyrics-previous-line 372,11411
+
+emms-metaplaylist-mode.el,509
+(defgroup emms-metaplaylist-mode 22,593
+(defcustom emms-metaplaylist-mode-buffer-name 27,742
+(defcustom emms-metaplaylist-mode-hooks 32,922
+(defface emms-metaplaylist-mode-face37,1077
+(defface emms-metaplaylist-mode-current-face46,1365
+(defconst emms-metaplaylist-mode-map59,1787
+(defun emms-metaplaylist-mode-goto-current 74,2526
+(defun get-emms-playlist-buffers 81,2705
+(defun emms-metaplaylist-mode-create 94,3148
+(defun emms-metaplaylist-mode-go 124,4078
+(defun emms-metaplaylist-mode 130,4276
+
+emms-mode-line.el,580
+(defgroup emms-mode-line 34,1069
+(defcustom emms-mode-line-mode-line-function 39,1193
+(defcustom emms-mode-line-titlebar-function 44,1442
+(defcustom emms-mode-line-format 49,1663
+(defun emms-mode-line-playlist-current 54,1816
+(defvar emms-mode-line-initial-titlebar 70,2404
+(defun emms-mode-line 72,2465
+(defun emms-mode-line-alter 95,3519
+(defun emms-mode-line-alter-mode-line 103,3775
+(defun emms-mode-line-alter-titlebar 110,4011
+(defun emms-mode-line-blank 117,4254
+(defun emms-mode-line-restore-mode-line 123,4449
+(defun emms-mode-line-restore-titlebar 130,4677
+
+emms-mode-line-icon.el,139
+(defvar emms-mode-line-icon-color 33,1086
+(defvar emms-mode-line-icon-before-format 36,1187
+(defun emms-mode-line-icon-function 64,1919
+
+emms-pbi.el,1710
+(defvar emms-pbi-version 85,3263
+(defgroup emms-pbi 91,3426
+(defcustom emms-pbi-playlist-entry-generate-function 96,3536
+(defcustom emms-pbi-playlist-entry-max-length 103,3822
+(defcustom emms-pbi-playlist-buffer-name 112,4233
+(defcustom emms-pbi-track-description-function 117,4375
+(defcustom emms-pbi-after-build-hook 127,4649
+(defcustom emms-pbi-current-line-face-changed-hook 134,4870
+(defcustom emms-pbi-manually-change-song-hook 139,5027
+(defface emms-pbi-song-face145,5180
+(defface emms-pbi-current-face153,5385
+(defvar emms-pbi-suspend-hooks 162,5654
+(defvar emms-pbi-current-overlay 170,5950
+(defvar emms-kill-ring 173,6032
+(defvar emms-pbi-longest-line 176,6099
+(defun emms-pbi 180,6198
+(defun emms-pbi-shorten-entry-to-max-length 199,7022
+(defun emms-position-vector 207,7366
+(defun emms-pbi-entry-info-updated 221,7827
+(defun emms-pbi-entry-update-track 238,8498
+(defun emms-pbi-entry-update-idx 246,8808
+(defun emms-pbi-entry-generate 263,9432
+(defun emms-pbi-insert-entry 273,9823
+(defun emms-pbi-rebuild-playlist-buffer 284,10252
+(defun emms-pbi-build-playlist-buffer 291,10468
+(defun emms-pbi-update-current-face 317,11353
+(defun emms-pbi-add-properties-current-line 334,12041
+(defun emms-pbi-play-current-line 342,12373
+(defun emms-pbi-show-current-line 353,12745
+(define-derived-mode emms-pbi-mode 363,13080
+(defun emms-pbi-quit 381,14238
+(defun emms-playlist-empty-p 387,14385
+(defun emms-pbi-kill-line 390,14450
+(defun emms-pbi-yank 421,15572
+(defun emms-pbi-return-current-line-index 441,16229
+(defun emms-pbi-valid-index-p 445,16392
+(defun emms-pbi-recenter 449,16552
+(defun emms-pbi-export-playlist 456,16714
+(defun emms-pbi-open-playlist 464,16936
+
+emms-pbi-filter.el,119
+(defvar emms-pbi-not-filtered 32,1062
+(defun emms-pbi-filter-region 36,1170
+(defun emms-pbi-unfilter-region 56,2086
+
+emms-pbi-mark.el,641
+(defgroup emms-pbi-mark 41,1187
+(defface emms-pbi-mark-marked-face46,1307
+(defvar emms-pbi-mark-indices 53,1475
+(defun emms-pbi-mark 57,1578
+(defun emms-pbi-mark-invalidate-marks 69,2156
+(defun emms-pbi-mark-add-keybindings 75,2355
+(defun emms-pbi-mark-current-line-marked-p 81,2631
+(defun emms-pbi-mark-current-line-mark 88,2862
+(defun emms-pbi-mark-current-line-unmark 95,3104
+(defun emms-pbi-add-mark-face 103,3428
+(defun emms-pbi-remove-mark-face 108,3650
+(defun emms-pbi-mark-get-marked 117,4000
+(defun emms-pbi-mark-clear-marked 129,4359
+(defun emms-pbi-mark-mark-file 142,4786
+(defun emms-pbi-mark-unmark-file 154,5120
+
+emms-pbi-popup.el,337
+(defvar emms-pbi-popup-version 30,943
+(defgroup emms-pbi-popup 34,1099
+(defcustom emms-pbi-popup-default-width 39,1233
+(defcustom emms-pbi-popup-default-side-left 47,1542
+(defvar emms-pbi-popup-old-conf 53,1756
+(defun emms-pbi-popup-forget-conf 56,1853
+(defun emms-pbi-popup-revert 66,2239
+(defun emms-pbi-popup-playlist 81,2806
+
+emms-player-mpd.el,621
+(defun emms-player-mpd-get-supported-regexp 86,3474
+(defvar emms-player-mpd-supported-regexp105,4178
+(defcustom emms-player-mpd-music-directory 111,4407
+(define-emms-simple-player mpd 122,4881
+(defun emms-player-mpd-clear 137,5272
+(defun emms-player-mpd-add 141,5405
+(defun emms-player-mpd-load 153,5955
+(defun emms-player-mpd-play 175,6890
+(defun emms-player-mpd-start 179,7051
+(defun emms-player-mpd-stop 191,7487
+(defun emms-player-mpd-pause 196,7647
+(defun emms-player-mpd-seek 201,7811
+(defun emms-player-mpd-next 214,8387
+(defun emms-player-mpd-previous 219,8572
+(defun emms-player-mpd-show 226,8851
+
+emms-player-mplayer.el,180
+(define-emms-simple-player mplayer 33,1080
+(define-emms-simple-player mplayer-playlist 39,1301
+(defun emms-player-mplayer-pause 56,1675
+(defun emms-player-mplayer-seek 61,1820
+
+emms-player-simple.el,619
+(defvar emms-player-simple-version 40,1367
+(defmacro define-emms-simple-player 48,1576
+(defvar emms-player-simple-process-name 99,4056
+(defun emms-player-simple-stop 102,4169
+(defun emms-player-simple-start 110,4434
+(defun emms-player-simple-sentinel 122,4963
+(defun emms-player-simple-pause 128,5179
+(defun emms-player-simple-resume 133,5351
+(defun emms-player-simple-regexp 138,5525
+(define-emms-simple-player mpg321 154,6215
+(define-emms-simple-player ogg123 157,6315
+(define-emms-simple-player speexdec 160,6412
+(define-emms-simple-player gstreamer 163,6506
+(define-emms-simple-player mikmod 166,6649
+
+emms-playing-time.el,734
+(defvar emms-playing-time-version 35,1182
+(defgroup emms-playing-time 46,1479
+(defcustom emms-playing-time-display-short-p 50,1562
+(defcustom emms-playing-time-display-format 57,1842
+(defvar emms-playing-time-display-p 64,2007
+(defvar emms-playing-time 67,2097
+(defvar emms-playing-time-string 70,2164
+(defun emms-playing-time-start 72,2202
+(defun emms-playing-time-stop 77,2354
+(defun emms-playing-time-pause 86,2625
+(defun emms-playing-time-seek 92,2793
+(defun emms-playing-time-enable 98,3018
+(defun emms-playing-time-disable 110,3574
+(defun emms-playing-time-toggle 123,4185
+(defun emms-playing-time-display 132,4464
+(defun emms-playing-time-mode-line 157,5281
+(defun emms-playing-time-restore-mode-line 165,5522
+
+emms-playlist-mode.el,1247
+(defvar emms-playlist-mode-hook 24,641
+(defvar emms-playlist-mode-selected-overlay-marker 27,708
+(defvar emms-playlist-mode-switched-buffer 30,832
+(defgroup emms-playlist-mode 37,1080
+(defface emms-playlist-track-face46,1349
+(defface emms-playlist-selected-face55,1614
+(defconst emms-playlist-mode-map68,2013
+(defmacro emms-playlist-mode-move-wrapper 93,3662
+(defun emms-playlist-mode-center-current 116,4324
+(defun emms-playlist-mode-selected-at 122,4511
+(defun emms-playlist-mode-play-current-track 127,4681
+(defun emms-playlist-mode-yank 136,4914
+(defun emms-playlist-mode-kill-track 150,5378
+(defun emms-playlist-mode-switch-buffer 176,6183
+(defun emms-playlist-mode-overlay-face 193,6842
+(defun emms-playlist-mode-overlay-track 197,6976
+(defun emms-playlist-mode-overlay-unselected 205,7262
+(defun emms-playlist-mode-overlay-selected 212,7485
+(defun emms-playlist-mode-save-buffer 237,8326
+(defun emms-playlist-mode-open-buffer 248,8728
+(defun emms-playlist-mode-save-active-buffer 276,9612
+(defun emms-playlist-mode-insert-track 285,9987
+(defun emms-playlist-mode-update-track-function 297,10411
+(defun emms-playlist-mode-go 315,11134
+(defun emms-playlist-mode-startup 326,11552
+(defun emms-playlist-mode 340,12012
+
+emms-playlist-sort.el,619
+(defmacro define-emms-playlist-sort 36,1166
+(define-emms-playlist-sort name)46,1548
+(define-emms-playlist-sort info-artist)47,1581
+(define-emms-playlist-sort info-title)48,1621
+(define-emms-playlist-sort info-album)49,1660
+(define-emms-playlist-sort info-year)50,1699
+(define-emms-playlist-sort info-note)51,1737
+(define-key emms-playlist-mode-map 53,1776
+(define-key emms-playlist-mode-map 54,1852
+(define-key emms-playlist-mode-map 55,1935
+(define-key emms-playlist-mode-map 56,2017
+(define-key emms-playlist-mode-map 57,2094
+(define-key emms-playlist-mode-map 58,2175
+(defun emms-playlist-sort 60,2257
+
+emms-pl-manip.el,340
+(defvar emms-pl-manip-version 43,1375
+(defvar emms-playlist-get-file-name-function 48,1531
+(defun vector-sort 50,1595
+(defun emms-pl-manip-sort 93,3068
+(defun emms-pl-manip-sort-by-filename 107,3520
+(defun emms-pl-manip-sort-by-name 112,3627
+(defun emms-pl-manip-sort-by-info-artist 116,3751
+(defun emms-playlist-reshuffle 125,4101
+
+emms-score.el,862
+(defvar emms-scores-list 56,2130
+(defvar emms-score-current-mood 57,2160
+(defvar emms-score-min-score 58,2202
+(defvar emms-score-default-score 59,2234
+(defvar emms-score-hash 60,2270
+(defcustom emms-score-file 64,2378
+(defun emms-score-change-mood 69,2498
+(defun emms-score-save-hash 76,2716
+(defun emms-score-load-hash 89,3143
+(defun emms-score-get-plist 99,3401
+(defun emms-score-change-score 102,3479
+(defun emms-score-up-playing 110,3765
+(defun emms-score-down-playing 116,3958
+(defun emms-score-up-file-on-line 122,4154
+(defun emms-score-down-file-on-line 126,4278
+(defun emms-score 130,4405
+(defun emms-score-next-noerror 143,4879
+(defun emms-score-create-entry 156,5427
+(defun emms-score-get-score 160,5569
+(defun emms-score-check-score 168,5861
+(defun emms-score-lower-tolerance 171,5964
+(defun emms-score-be-more-tolerant 176,6114
+
+emms-setup.el,232
+(defgroup emms-setup 28,908
+(defcustom emms-setup-default-player-list33,1027
+(defun emms-minimalistic 42,1255
+(defun emms-standard 50,1482
+(defun emms-all 69,2168
+(defun emms-devel 87,2634
+(defun emms-default-players 99,2985
+
+emms-source-file.el,881
+(defvar emms-source-file-version 32,1153
+(defgroup emms-source-file 44,1448
+(defcustom emms-source-file-default-directory 49,1581
+(defcustom emms-source-file-directory-tree-function54,1728
+(defcustom emms-source-file-gnu-find 69,2337
+(defalias 'emms-read-directory-nameemms-read-directory-name75,2530
+(define-emms-source file 84,2793
+(define-emms-source directory 98,3424
+(define-emms-source directory-tree 113,4150
+(define-emms-source find 129,4952
+(define-emms-source m3u-playlist 147,5769
+(defun emms-source-file-directory-tree 172,6668
+(defun emms-source-file-directory-tree-internal 182,7044
+(defun emms-source-file-directory-tree-find 206,7869
+(defun emms-source-files 222,8505
+(defun emms-source-dired 227,8629
+(defun emms-source-file-regex 232,8767
+(defun emms-locate 246,9213
+(define-emms-source url 267,10048
+(define-emms-source streamlist 272,10223
+
+emms-stream-info.el,2995
+(defconst emms-stream-info-max 80,3265
+(defconst emms-stream-info-timeout 83,3335
+(defconst emms-stream-info-verbose 86,3426
+(defconst emms-stream-info-version89,3520
+(defconst emms-stream-info-char-alter-regexp 93,3600
+(defconst emms-stream-info-shoutcast-regexp 96,3741
+(defconst emms-stream-info-icecast-regexp 100,3878
+(defconst emms-stream-info-shoutcast-title-regexp 104,4009
+(defconst emms-stream-info-icecast-capture-pattern 109,4234
+(defconst emms-stream-info-stream-header-regexp 113,4391
+(defconst emms-stream-info-streamlist-regexp117,4544
+(defconst emms-stream-info-debugging 122,4713
+(defconst emms-stream-info-debug-buffer 126,4885
+(defconst emms-stream-info-vocab 129,4992
+(defconst emms-stream-info-format-string 140,5237
+(defconst emms-stream-info-format-string-notitle154,5576
+(defconst emms-stream-info-pls-regexp 160,5815
+(defconst emms-stream-info-m3u-regexp 163,5916
+(defvar emms-stream-info-url 166,6017
+(defvar emms-stream-info-port 169,6068
+(defvar emms-stream-info-found 172,6121
+(defvar emms-stream-info-streamlist-found 175,6185
+(defvar emms-stream-info-procname 178,6271
+(defvar emms-stream-info-downloaded 181,6374
+(defvar emms-stream-info-read-inhibit 184,6452
+(defvar emms-stream-info-return-hook 187,6556
+(defvar emms-stream-info-read-hook 190,6670
+(defvar emms-stream-info-header-flag 195,6884
+(defvar emms-stream-info-title-flag 198,6983
+(defvar emms-stream-info-streamlist-flag 201,7080
+(defvar emms-stream-info-request-string 204,7187
+(defun emms-stream-info-decompose-url 207,7276
+(defvar emms-stream-info-state-bv242,8419
+(defun emms-stream-info-set-message 252,8831
+(defun emms-stream-info-unset-message 254,8910
+(defun emms-stream-info-message-p 256,8993
+(defun emms-stream-info-set-insert 259,9069
+(defun emms-stream-info-unset-insert 261,9147
+(defun emms-stream-info-insert-p 263,9229
+(defun emms-stream-info-set-continue 266,9304
+(defun emms-stream-info-unset-continue 268,9384
+(defun emms-stream-info-continue-p 270,9468
+(defun emms-stream-info-streamlist-type 273,9545
+(defun emms-stream-info-format 282,9773
+(defun emms-stream-info-pretty-print 295,10101
+(defun emms-stream-info-pretty-print-insert 332,11411
+(defun emms-stream-info-continue 336,11581
+(defun list-to-string 346,11892
+(defun emms-stream-info-get-key 355,12115
+(defun emms-stream-info-get-keys 360,12280
+(defun emms-stream-info-decode-ogg 369,12577
+(defun emms-stream-info-decode-mp3 398,13342
+(defun emms-stream-info-filter 417,13809
+(defun emms-stream-info-kill-process 512,16759
+(defun emms-stream-info-after-function 523,17143
+(defun emms-stream-info-sentinel 529,17373
+(defun emms-stream-info-make-request-string 537,17629
+(defun emms-stream-info-parse-url 548,17968
+(defun empty-string-p 584,18959
+(defun emms-stream-info-reset-state 588,19056
+(defun emms-stream-info-get 614,20125
+(defun emms-stream-info-input-sanity 703,22985
+(defun emms-stream-info-message 708,23132
+(defun emms-stream-info-insert 721,23673
+
+emms-streams.el,1679
+(defvar emms-stream-bookmarks-file 27,918
+(defvar emms-stream-list 30,1037
+(defvar emms-stream-buffer-name 33,1126
+(defvar emms-stream-play-hook 36,1235
+(defvar emms-stream-current-stream 39,1338
+(defvar emms-stream-default-action 44,1495
+(defvar emms-stream-last-stream 48,1669
+(defface emms-stream-name-face 51,1749
+(defface emms-stream-url-face 54,1855
+(defvar emms-stream-default-list60,2123
+(defvar emms-stream-mode-map104,4126
+(defun emms-stream-line-number-at-pos 132,5445
+(defun emms-streams 143,5810
+(defun emms-stream-mode 152,6091
+(defun emms-stream-popup-revert 168,6608
+(defun emms-stream-popup 185,7336
+(defun emms-stream-init 218,8768
+(defun emms-stream-read-file 221,8874
+(defun emms-stream-save-bookmarks-file 231,9179
+(defun emms-stream-display-line 240,9428
+(defun emms-stream-display 249,9819
+(defun take 256,10030
+(defun insert-at 265,10231
+(defun emms-stream-get-bookmark-at-point 273,10512
+(defun emms-stream-redisplay 278,10640
+(defun emms-stream-add-bookmark 284,10769
+(defun emms-stream-delete-bookmark 298,11279
+(defun emms-stream-edit-bookmark 309,11631
+(defun emms-stream-name 324,12437
+(defun emms-stream-url 326,12478
+(defun emms-stream-fd 328,12519
+(defun emms-stream-type 330,12560
+(defun emms-stream-play 333,12605
+(defun emms-stream-info-bookmark 349,13244
+(defun emms-stream-next-line 359,13627
+(defun emms-stream-previous-line 363,13696
+(defun emms-stream-quit 367,13770
+(defun emms-stream-toggle-default-action 372,13873
+(defun emms-stream-last-element 391,14532
+(defun emms-info-url-providep 394,14620
+(defun emms-info-file-info-song-artist 414,15169
+(defun emms-stream-add-data-to-track 429,15797
+
+emms-tageditor.el,1349
+(defgroup emms-tageditor 63,1991
+(defcustom emms-tageditor-buffer-name 68,2105
+(defvar emms-tageditor-current-tracks 74,2267
+(defvar emms-tageditor-current-infos 77,2361
+(defvar emms-tageditor-message 80,2459
+(defvar emms-tageditor-widgets 83,2545
+(defun emms-tageditor-get-widget 87,2650
+(defun emms-tageditor-set-widget 92,2883
+(defun emms-tageditor-get-widget-id 98,3176
+(defun emms-tageditor-read-tag 103,3385
+(defun emms-tageditor-read-tags 119,3940
+(defun emms-tageditor-save 124,4111
+(defun emms-tageditor-save-all 151,5369
+(defun emms-tageditor-cancel 161,5732
+(defun emms-tageditor-create-string 164,5805
+(defun emms-tageditor-create-widgets 171,6053
+(defun emms-tageditor-cleanup 221,7799
+(defun emms-tageditor-replace-regexp 238,8391
+(defun emms-tageditor-replace-create-replacement 244,8746
+(defun emms-tageditor-replace-tag 254,9463
+(defun emms-tageditor-replace-tags 271,10149
+(defun emms-tageditor-edit 299,11335
+(defun emms-tageditor-edit-current 353,13481
+(defvar emms-tageditor-pbi-mark-message359,13687
+(defun emms-tageditor-pbi-mode 394,14996
+(defun emms-tageditor-pbi-register 406,15485
+(defun emms-tageditor-pbi-edit-current-line 413,15694
+(defun emms-tageditor-pbi-mark-mode 425,16144
+(defun emms-tageditor-pbi-mark-register 437,16653
+(defun emms-tageditor-pbi-mark-edit-marked-entries 444,16892
+
+later-do.el,219
+(defvar later-do-version 28,1064
+(defgroup later-do 31,1147
+(defcustom later-do-interval 36,1250
+(defvar later-do-list 41,1373
+(defvar later-do-timer 44,1447
+(defun later-do 47,1510
+(defun later-do-timer 59,2000
+
+ogg-comment.el,938
+(defconst oggc-ogg-header 59,2006
+(defconst oggc-identification-header 62,2095
+(defconst oggc-comment-header 65,2217
+(defconst oggc-setup-header 68,2325
+(defconst oggc-code-book-pattern 71,2429
+(defconst oggc-version 74,2527
+(defmacro with-part-of-file 77,2605
+(defmacro aif 92,3084
+(defun oggc-split-comment 104,3376
+(defun oggc-encode-utf-8 117,3817
+(defun oggc-decode-utf-8 126,4120
+(defun oggc-read-string 135,4429
+(defun oggc-valid-ogg-stream-p 142,4627
+(defun oggc-comment-exists-p 149,4980
+(defun oggc-bytes-to-lsb-int 157,5276
+(defun oggc-int-to-lsb-bytes 164,5472
+(defun oggc-construct-comment-field 172,5769
+(defun oggc-construct-vendor 186,6367
+(defun oggc-write-comments 198,6876
+(defun oggc-construct-comment-string 216,7633
+(defun oggc-read-vendor 225,7955
+(defun oggc-read-comments 230,8121
+(defun oggc-read-header 242,8549
+(defun oggc-pretty-print-header 252,8917
+(defun oggc-show-header 264,9298
+
+emms-maint.el,0

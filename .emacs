@@ -266,6 +266,26 @@
     (color-theme-initialize)
     (color-theme-tty-dark)))
 
+;; Packages
+(require 'package)
+(package-initialize)
+;; Add the original Emacs Lisp Package Archive
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+;; Tabbar and tabbar-ruler
+(require 'tabbar)
+(tabbar-mode 1)
+(setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
+;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
+;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
+;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
+(require 'tabbar-ruler)
+
+;; my customize
 (setq linum-format "%d  ")
 
 ;;; .emacs end here

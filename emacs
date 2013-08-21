@@ -223,6 +223,140 @@
   (abbrev-mode t))
 (add-hook 'shell-mode-hook 'ywb-shell-mode-hook)
 
+;; color-theme
+(add-to-list 'load-path "~/.emacs.d/site-map/color-theme/color-theme.el")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+    (color-theme-initialize)
+    (if (eq system-type 'windows-nt)
+        (color-theme-tty-dark)
+      (color-theme-calm-forest))))
+
+;; Packages
+(require 'package)
+(package-initialize)
+;; Add the original Emacs Lisp Package Archive
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+;; Tabbar.......tabbar-ruler.......tabbar face
+(require 'tabbar)
+(tabbar-mode 1)
+(define-prefix-command 'lwindow-map)
+(global-set-key (kbd "<M-up>") 'tabbar-backward-group)
+(global-set-key (kbd "<M-down>") 'tabbar-forward-group)
+(global-set-key (kbd "<M-left>") 'tabbar-backward)
+(global-set-key (kbd "<M-right>") 'tabbar-forward)
+
+;; tabbar-ruler
+(setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
+;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
+;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
+;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
+(require 'tabbar-ruler)
+
+;; tabbar face
+(when (eq system-type 'darwin)
+  ;; set default face: font-family, background, foreground, size
+  ;; (set-face-attribute 'tabbar-default nil
+  ;;                     ;; :family "Monaco"
+  ;;                     :background "gray60"
+  ;;                     :foreground "black"
+  ;;                     :height 1)
+  ;; set button face：outer-box size and color
+  (set-face-attribute 'tabbar-button nil
+                      :inherit 'tabbar-default
+                      :background "#37B371"
+                      :box '(:line-width 2
+                                         :color "yellow")
+                      :width 'ultra-expanded)
+  ;; set selected tab face: color, font family, outer-box size and color
+  (set-face-attribute 'tabbar-selected nil
+                      :family "Monaco"
+                      :background "gray80"
+                      :foreground "purple"
+                      :weight 'bold
+                      :box '(:line-width 3
+                                         :color "cyan")
+                      :height 1.3)
+  ;; set unselected tab face: color
+  (set-face-attribute 'tabbar-unselected nil
+                      :background "gray50"
+                      :box '(:line-width 3
+                                         :color "dark orange")
+                      :foreground "black")
+  )
+
+;; minor...configurations...linum...
+(setq linum-format "%d ")
+
+;; font...family...size
+(if (eq system-type 'darwin)
+    (set-default-font "Everson Mono-16"))
+
+;; Switch command key and control key on MAC
+(when (eq system-type 'darwin) ;; mac specific settings
+  ;; (setq mac-contril-modifier 'alt)
+  (setq mac-option-modifier 'control)
+  (setq mac-command-modifier 'meta))
+
+;; set exec path...texlive...others...
+(if (eq system-type 'darwin)
+    (setenv "PATH"
+            (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
+                    "/opt/local/bin" ":"
+                    (getenv "PATH"))))
+
+;; auctex...tex....xetex...pdf-viewer...
+(defun auctex-configuration ()
+  "Auctex configurations"
+  (setq TeX-auto-untabify t     ; remove all tabs before saving
+        TeX-engine 'xetex       ; use xelatex default
+        TeX-show-compilation t) ; display compilation windows
+  (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
+  (setq TeX-save-query nil)
+  (imenu-add-menubar-index)
+  (setq TeX-view-program-list
+        '(("SumatraPDF" "SumatraPDF.exe %o")
+          ("Gsview" "gsview64.exe %o")
+          ("Okular" "okular --unique %o")
+          ("Evince" "evince %o")
+          ("Firefox" "firefox %o")
+          ("Skim" "/Applications/Skim.app/Contents/MacOS/Skim %o")))
+  (cond
+   ((eq system-type 'windows-nt)
+    (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                       (output-dvi "dviout"))))
+   ((eq system-type 'gnu/linux)
+    (setq TeX-view-program-selection '((output-pdf "Okular")
+                                       (output-dvi "Okular"))))
+   ((eq system-type 'darwin)
+    (setq TeX-view-program-selection '((output-pdf "Skim")
+                                       (output-dvi "xdvi"))))
+   )
+  (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol))
+
+(mapc (lambda (mode)
+      (add-hook 'LaTeX-mode-hook mode))
+      (list 'auctex-configuration
+            'auto-fill-mode
+            'LaTeX-math-mode
+            'turn-on-reftex
+            'linum-mode))
+
+;; Split window horizontally
+(when (eq system-type 'darwin)
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 80))
+
+;; .............
+;; Start emacs server
+(server-start)
+
 ;; .......................desktop .....
 ;; . ywb-load-slow-part .. t................
 (defvar ywb-load-slow-part nil)
@@ -258,35 +392,4 @@
   (appt-activate t)
   (setq ywb-load-slow-part t))
 
-;; color-theme
-(add-to-list 'load-path "~/.emacs.d/site-map/color-theme/color-theme.el")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-    (color-theme-initialize)
-    (color-theme-tty-dark)))
-
-;; Packages
-(require 'package)
-(package-initialize)
-;; Add the original Emacs Lisp Package Archive
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-;; Tabbar and tabbar-ruler
-(require 'tabbar)
-(tabbar-mode 1)
-(setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
-;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
-;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
-;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
-(require 'tabbar-ruler)
-
-;; my customize
-(setq linum-format "%d  ")
-
 ;;; .emacs end here
-

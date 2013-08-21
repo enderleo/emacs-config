@@ -1,10 +1,7 @@
 ;; Packages to install first (check if emacs is 24 or higher)
 (if (>= emacs-major-version 24)
     (progn
-      ;; Add a larger package list
-      (setq package-archives '(
-                               ("ELPA" . "http://tromey.com/elpa/")
-                               ("marmalade" . "http://marmalade-repo.org/packages/")))
+      ;; refresh package list
       (package-refresh-contents)
       ;; tabbar
       (when (not (require 'tabbar nil t))

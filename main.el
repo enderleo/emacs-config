@@ -4,9 +4,13 @@
 (setq custom-file (concat extra-emacs-directory
                           "/my-custom.el"))
 
-;; Packages
+;; packages....initialize....elpa...gnu...marmalade
 (require 'package)
 (package-initialize)
+(setq package-archives
+      '(("ELPA" . "http://tromey.com/elpa/")
+        ("GNU" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; .......
 (load (concat extra-emacs-directory

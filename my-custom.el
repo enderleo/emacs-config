@@ -83,7 +83,8 @@
 (defvar ywb-emacs-lisp-path
   (expand-file-name (concat data-directory "../site-lisp/")))
 ;; ... windows ......... Ubuntu ........
-(defvar ywb-load-path "~/.emacs.d/site-lisp/")
+(defvar ywb-load-path
+  (concat extra-emacs-directory "/site-lisp/"))
 (add-to-list 'load-path ywb-load-path)
 (let ((default-directory ywb-load-path))
   (load "subdirs.el"))

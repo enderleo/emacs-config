@@ -1,15 +1,28 @@
-;;;_#2 .emacs
+;;;_#2 main.el
 ;; .. custom-file .... M-x customize ........ Face ...
 ;; .....
-(setq custom-file "~/.emacs.d/my-custom.el")
+(setq custom-file (concat extra-emacs-directory
+                          "/my-custom.el"))
+
+;; Packages
+(require 'package)
+(package-initialize)
 
 ;; .......
-(load "~/.emacs.d/my-custom.el")
-(load "~/.emacs.d/elisps.el")
-(load "~/.emacs.d/my-utils.el")
-(load "~/.emacs.d/program.el")
-(load "~/.emacs.d/program-ab.el")
-(load "~/.emacs.d/vmware.el")
+(load (concat extra-emacs-directory
+              "/my-custom.el"))
+(load (concat extra-emacs-directory
+              "/elisps.el"))
+(load (concat extra-emacs-directory
+              "/my-utils.el"))
+(load (concat extra-emacs-directory
+              "/program.el"))
+(load (concat extra-emacs-directory
+              "/program-ab.el"))
+(load (concat extra-emacs-directory
+              "/vmware.el"))
+;; (load (concat extra-emacs-directory
+;;               "/package.el"))
 
 ;; ..........................
 (global-set-key "\C-m" 'newline-and-indent)
@@ -204,7 +217,7 @@
 ;; ann77 ............ shell...............
 ;; shell ............... Ibuffer .... buffer ...
 ;; shell . buffer......... buffer
-(setenv "HISTFILE" "~/.emacs.d/.history")
+(setenv "HISTFILE" (concat "~/.emacs.d/.history"))
 (defun wcy-shell-mode-auto-rename-buffer (text)
   (if (eq major-mode 'shell-mode)
       (rename-buffer  (concat "*shell: " default-directory "*") t)))
@@ -224,7 +237,8 @@
 (add-hook 'shell-mode-hook 'ywb-shell-mode-hook)
 
 ;; color-theme
-(add-to-list 'load-path "~/.emacs.d/site-map/color-theme/color-theme.el")
+(add-to-list 'load-path (concat extra-emacs-directory
+                                "/site-map/color-theme/color-theme.el"))
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
@@ -232,16 +246,6 @@
     (if (eq system-type 'windows-nt)
         (color-theme-tty-dark)
       (color-theme-calm-forest))))
-
-;; Packages
-(require 'package)
-(package-initialize)
-;; Add the original Emacs Lisp Package Archive
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; Tabbar.......tabbar-ruler.......tabbar face
 (require 'tabbar)
@@ -361,17 +365,17 @@
 ;; . ywb-load-slow-part .. t................
 (defvar ywb-load-slow-part nil)
 (unless ywb-load-slow-part
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
+  (add-to-list 'load-path (concat extra-emacs-directory "/site-lisp/eim"))
   (autoload 'eim-use-package "eim" "Another emacs input method")
 
   ;; ......
   (register-input-method
    "eim-wb" "euc-cn" 'eim-use-package
-   ".." "......." "~/.emacs.d/site-lisp/eim/wb.txt")
+   ".." "......." (concat extra-emacs-directory "/site-lisp/eim/wb.txt"))
   (setq default-input-method "eim-wb")
   (register-input-method
    "eim-py" "euc-cn" 'eim-use-package
-   ".." "......." "~/.emacs.d/site-lisp/eim/py.txt")
+   ".." "......." (concat extra-emacs-directory "/site-lisp/eim/py.txt"))
   (require 'eim-extra nil t)
   (when (featurep 'eim-extra)
     (global-set-key "\\" 'eim-insert-ascii))

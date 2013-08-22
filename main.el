@@ -268,36 +268,48 @@
 (require 'tabbar-ruler)
 
 ;; tabbar face
-(when (eq system-type 'darwin)
-  ;; set default face: font-family, background, foreground, size
-  ;; (set-face-attribute 'tabbar-default nil
-  ;;                     ;; :family "Monaco"
-  ;;                     :background "gray60"
-  ;;                     :foreground "black"
-  ;;                     :height 1)
-  ;; set button face：outer-box size and color
-  (set-face-attribute 'tabbar-button nil
-                      :inherit 'tabbar-default
-                      :background "#37B371"
-                      :box '(:line-width 2
-                                         :color "yellow")
-                      :width 'ultra-expanded)
-  ;; set selected tab face: color, font family, outer-box size and color
-  (set-face-attribute 'tabbar-selected nil
-                      :family "Monaco"
-                      :background "gray80"
-                      :foreground "purple"
-                      :weight 'bold
-                      :box '(:line-width 3
-                                         :color "cyan")
-                      :height 1.3)
-  ;; set unselected tab face: color
-  (set-face-attribute 'tabbar-unselected nil
-                      :background "gray50"
-                      :box '(:line-width 3
-                                         :color "dark orange")
-                      :foreground "black")
+(defun set-tabbar-look ()
+  "configure how tabbar looks"
+  (let ((tabbar-title-font
+         (cond ((eq system-type 'darwin)
+                "Monaco")
+               ((eq system-type 'gnu/linux)
+                "Bitstream Sans Mono")
+               ((eq system-type 'windows-nt)
+                "Courier New"))))
+    ;; set default face: font-family, background, foreground, size
+    ;; (set-face-attribute 'tabbar-default nil
+    ;;                     ;; :family tabbar-title-font
+    ;;                     :background "gray60"
+    ;;                     :foreground "black"
+    ;;                     :height 1)
+    ;; set button face：outer-box size and color
+    (set-face-attribute 'tabbar-button nil
+                        :inherit 'tabbar-default
+                        :background "#37B371"
+                        :box '(:line-width 2
+                                           :color "yellow")
+                        :width 'ultra-expanded)
+    ;; set selected tab face: color, font family, outer-box size and color
+    (set-face-attribute 'tabbar-selected nil
+                        :family tabbar-title-font
+                        :background "gray80"
+                        :foreground "purple"
+                        :weight 'bold
+                        :box '(:line-width 3
+                                           :color "cyan")
+                        :height 1.3)
+    ;; set unselected tab face: color
+    (set-face-attribute 'tabbar-unselected nil
+                        :family tabbar-title-font
+                        :background "gray50"
+                        :box '(:line-width 3
+                                           :color "dark orange")
+                        :foreground "black")
+    )
   )
+
+(set-tabbar-look)
 
 ;; minor...configurations...linum...
 (setq linum-format "%d ")
@@ -383,14 +395,6 @@
   (require 'eim-extra nil t)
   (when (featurep 'eim-extra)
     (global-set-key "\\" 'eim-insert-ascii))
-
-  ;; (require 'emms nil t)
-  ;; (when (featurep 'emms)
-  ;;   (load "~/.emacs.d/emms-init.el"))
-
-  ;; (require 'muse nil t)
-  ;; (when (featurep 'muse)
-  ;;   (load "~/.emacs.d/muse-init.el"))
 
   (when (featurep 'desktop)
     (desktop-save-mode 1)

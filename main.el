@@ -25,8 +25,8 @@
               "/program-ab.el"))
 (load (concat extra-emacs-directory
               "/vmware.el"))
-;; (load (concat extra-emacs-directory
-;;               "/package.el"))
+(load (concat extra-emacs-directory
+              "/package.el"))
 
 ;; ..........................
 (global-set-key "\C-m" 'newline-and-indent)
@@ -248,7 +248,7 @@
   '(progn
     (color-theme-initialize)
     (if (eq system-type 'windows-nt)
-        (color-theme-tty-dark)
+        (color-theme-calm-forest)
       (color-theme-calm-forest))))
 
 ;; Tabbar.......tabbar-ruler.......tabbar face
@@ -312,24 +312,74 @@
 (set-tabbar-look)
 
 ;; minor...configurations...linum...
+;; encoding....max specpdl size.....
+;; font...family...size.............
 (setq linum-format "%d ")
+(when (eq system-type 'windows-nt)
+  (prefer-coding-system 'utf-8-unix)
+  (setq default-buffer-file-coding-system 'utf-8-unix))
+(setq max-specpdl-size 1000)
+(cond ((eq system-type 'darwin)
+       (set-default-font "Everson Mono-16"))
+      ((eq system-type 'windows-nt)
+       (set-default-font "Courier New-12")))
 
-;; font...family...size
-(if (eq system-type 'darwin)
-    (set-default-font "Everson Mono-16"))
-
-;; Switch command key and control key on MAC
-(when (eq system-type 'darwin) ;; mac specific settings
+;; .switch command key and control key on MAC...
+(when (eq system-type 'darwin)
   ;; (setq mac-contril-modifier 'alt)
   (setq mac-option-modifier 'control)
   (setq mac-command-modifier 'meta))
 
 ;; set exec path...texlive...others...
-(if (eq system-type 'darwin)
-    (setenv "PATH"
-            (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
-                    "/opt/local/bin" ":"
-                    (getenv "PATH"))))
+(when (eq system-type 'darwin)
+  (setenv "PATH"
+          (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
+                  "/opt/local/bin" ":"
+                  (getenv "PATH"))))
+
+;; org-mode...disable postamble...w3m...
+(setq org-export-html-postamble 'nil)
+;; (setq browse-url-browser-function 'w3m-browse-url)
+
+;; w3m...configuration...
+(when (require 'w3m-load nil t)
+  (require 'mime-w3m)
+  (setq w3m-use-favicon nil)
+  (setq w3m-command-arguments '("-cookie" "-F"))
+  (setq w3m-use-cookies t)
+  (setq w3m-home-page "http://www.baidu.com"))
+
+;; smex
+(require 'smex)
+(smex-initialize)
+
+;; yasnippnet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; exec-path........................
+;; win...gtk...pscp...gadgets.......
+;; win...gnuwin32...gs...python.....
+;; win...gsview...w3m...aspell......
+(when (eq system-type 'windows-nt)
+  (mapc (function (lambda (x) (add-to-list 'exec-path x)))
+        '("C:/Program Files (x86)/Common Files/GTK/2.0/bin"
+          "C:/Program Files (x86)/PuTTY"
+          "~/gadgets"
+          "~/mingw64/bin"
+          "~/gnuwin32/bin"
+          "~/texlive/bin/win32"
+          "~/gs/gs9.07/bin"
+          "C:/Python27"
+          "~/gs/Ghostgum/gsview"
+          "C:/Program Files/emacs-24.2/w3m"
+          "~/Aspell/bin")))
+
+;;; aspell...personal dic...........
+(require 'ispell)
+(setq ispell-program-name "aspell")
+(setq ispell-personal-dictionary
+      (expand-file-name "~/.ispell"))
 
 ;; auctex...tex....xetex...pdf-viewer...
 (defun auctex-configuration ()
@@ -366,12 +416,16 @@
             'auto-fill-mode
             'LaTeX-math-mode
             'turn-on-reftex
-            'linum-mode))
+            'linum-mode
+            'flyspell-mode))
 
-;; Split window horizontally
+;; darwin...hsplit window...........
 (when (eq system-type 'darwin)
   (setq split-height-threshold nil)
   (setq split-width-threshold 80))
+
+;; tramp mode...autosave dir........
+(setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave")
 
 ;; .............
 ;; Start emacs server

@@ -240,6 +240,25 @@
   (abbrev-mode t))
 (add-hook 'shell-mode-hook 'ywb-shell-mode-hook)
 
+;; w3m...configuration...
+(when (require 'w3m-load nil t)
+  (setq mm-text-html-renderer 'w3m)
+  (setq browse-url-browser-function 'w3m-browse-url)
+  (setq w3m-coding-system 'utf-8
+        w3m-file-coding-system 'utf-8
+        w3m-file-name-coding-system 'utf-8
+        w3m-input-coding-system 'utf-8
+        w3m-output-coding-system 'utf-8
+        w3m-terminal-coding-system 'utf-8
+        w3m-use-favicon nil
+        w3m-command-arguments '("-cookie" "-F")
+        w3m-use-cookies t
+        w3m-home-page "http://www.google.com")
+  (setq w3m-command-arguments
+        (nconc w3m-command-arguments
+               '("-o" "http_proxy=http://proxy.vmware.com:3128/")))
+  )
+
 ;; color-theme
 (add-to-list 'load-path (concat extra-emacs-directory
                                 "/site-map/color-theme/color-theme.el"))
@@ -262,7 +281,7 @@
 
 ;; tabbar-ruler
 (setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
-;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
+(setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
 ;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
 ;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
 (require 'tabbar-ruler)
@@ -339,15 +358,6 @@
 
 ;; org-mode...disable postamble...w3m...
 (setq org-export-html-postamble 'nil)
-;; (setq browse-url-browser-function 'w3m-browse-url)
-
-;; w3m...configuration...
-(when (require 'w3m-load nil t)
-  (require 'mime-w3m)
-  (setq w3m-use-favicon nil)
-  (setq w3m-command-arguments '("-cookie" "-F"))
-  (setq w3m-use-cookies t)
-  (setq w3m-home-page "http://www.baidu.com"))
 
 ;; smex
 (require 'smex)
@@ -355,7 +365,9 @@
 
 ;; yasnippnet
 (require 'yasnippet)
-(yas-global-mode 1)
+(if (functionp 'yas-global-mode)
+    (yas-global-mode 1)
+  (yas/global-mode 1))
 
 ;; exec-path........................
 ;; win...gtk...pscp...gadgets.......

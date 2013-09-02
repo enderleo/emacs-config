@@ -56,7 +56,12 @@ tried.  This is typically chained with `c-lineup-ObjC-method-call'."
                (comment-end . "*/")
                (comment-style . extra-line)
                (c-comment-only-line-offset . 0)
-               (c-hanging-braces-alist . ((substatement-open before after)))
+               (c-hanging-braces-alist . ((substatement-open after)))
+               (c-cleanup-list . (brace-else-brace
+                                  brace-elseif-brace
+                                  brace-catch-brach
+                                  defun-close-semi
+                                  comment-close-slash))
                (c-offsets-alist . ((topmost-intro        . 0)
                                    (topmost-intro-cont   . 0)
                                    (substatement         . +)
@@ -75,12 +80,19 @@ tried.  This is typically chained with `c-lineup-ObjC-method-call'."
                                    ))))
 
 (defun vmware-c-mode-setup ()
-  (c-set-style "vmware-c-c++-engineering-manual"))
+  (c-set-style "vmware-c-c++-engineering-manual")
+  (linum-mode)
+  (setq tab-stop-list (number-sequence 3 210 3))
+  ;; (local-set-key [tab] 'tab-to-tab-stop))
+)
 
 ; These are what actually make our style take effect in C, C++, and Obj-C modes
 (add-hook 'c-mode-hook 'vmware-c-mode-setup)
 (add-hook 'c++-mode-hook 'vmware-c-mode-setup)
 (add-hook 'objc-mode-hook 'vmware-c-mode-setup)
+
+; Remove training spaces before save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defun vmware-insert-file-header ()
   (interactive)

@@ -349,13 +349,6 @@
   (setq mac-option-modifier 'control)
   (setq mac-command-modifier 'meta))
 
-;; set exec path...texlive...others...
-(when (eq system-type 'darwin)
-  (setenv "PATH"
-          (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
-                  "/opt/local/bin" ":"
-                  (getenv "PATH"))))
-
 ;; org-mode...disable postamble...w3m...
 (setq org-export-html-postamble 'nil)
 
@@ -368,6 +361,21 @@
 (if (functionp 'yas-global-mode)
     (yas-global-mode 1)
   (yas/global-mode 1))
+
+;; set shell path...................
+;; mac...texlive...others...........
+;; win...putty...plink..............
+(cond
+ ((eq system-type 'darwin)
+  (setenv "PATH"
+          (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
+                  "/opt/local/bin" ":"
+                  (getenv "PATH"))))
+ ((eq system-type 'windows-nt)
+  (setenv "PATH"
+          (concat (getenv "PATH")
+                  ";" "C:/Program Files (x86)/PuTTY")))
+ )
 
 ;; exec-path........................
 ;; win...gtk...pscp...gadgets.......
@@ -437,7 +445,9 @@
   (setq split-width-threshold 80))
 
 ;; tramp mode...autosave dir........
+;; ...never expire password.........
 (setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave")
+(setq password-cache-expiry nil)
 
 ;; .............
 ;; Start emacs server

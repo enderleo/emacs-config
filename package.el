@@ -6,7 +6,9 @@
               "adaptive-wrap"
               "auctex"
               "yasnippet"
-              "smex"))
+              "smex"
+              "cl"
+              "dropdown-list"))
            (missing-package-list
             (delq nil (mapcar (lambda (x)
                                 (let ((packsym))

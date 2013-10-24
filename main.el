@@ -374,7 +374,13 @@
  ((eq system-type 'windows-nt)
   (setenv "PATH"
           (concat (getenv "PATH")
-                  ";" "C:/Program Files (x86)/PuTTY")))
+                  ";" "C:/Program Files (x86)/PuTTY"
+                  ";" "C:/Users/lhu/Workspace/texlive/bin/win32"
+                  ";" "C:/Users/lhu/Workspace/gnuwin32/bin"
+                  ";" "C:/Users/lhu/Workspace/mingw64/bin"
+                  ";" "C:/Users/lhu/Workspace/gadgets"
+                  ";" "C:/Users/lhu/Aspell/bin"
+                  ";" "C:/Python27")))
  )
 
 ;; exec-path........................
@@ -409,6 +415,7 @@
         TeX-show-compilation t) ; display compilation windows
   (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
   (setq TeX-save-query nil)
+  (setq-default TeX-master nil)
   (imenu-add-menubar-index)
   (setq TeX-view-program-list
         '(("SumatraPDF" "SumatraPDF.exe %o")

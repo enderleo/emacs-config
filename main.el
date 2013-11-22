@@ -4,14 +4,6 @@
 (setq custom-file (concat extra-emacs-directory
                           "/my-custom.el"))
 
-;; packages....initialize....elpa...gnu...marmalade
-(require 'package)
-(package-initialize)
-(setq package-archives
-      '(("ELPA" . "http://tromey.com/elpa/")
-        ("GNU" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
-
 ;; .......
 (load (concat extra-emacs-directory
               "/my-custom.el"))
@@ -19,6 +11,8 @@
               "/elisps.el"))
 (load (concat extra-emacs-directory
               "/my-utils.el"))
+(load (concat extra-emacs-directory
+              "/cedet.el"))
 (load (concat extra-emacs-directory
               "/program.el"))
 (load (concat extra-emacs-directory
@@ -362,45 +356,6 @@
     (yas-global-mode 1)
   (yas/global-mode 1))
 
-;; set shell path...................
-;; mac...texlive...others...........
-;; win...putty...plink..............
-(cond
- ((eq system-type 'darwin)
-  (setenv "PATH"
-          (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
-                  "/opt/local/bin" ":"
-                  (getenv "PATH"))))
- ((eq system-type 'windows-nt)
-  (setenv "PATH"
-          (concat (getenv "PATH")
-                  ";" "C:/Program Files (x86)/PuTTY"
-                  ";" "C:/Users/lhu/Workspace/texlive/bin/win32"
-                  ";" "C:/Users/lhu/Workspace/gnuwin32/bin"
-                  ";" "C:/Users/lhu/Workspace/mingw64/bin"
-                  ";" "C:/Users/lhu/Workspace/gadgets"
-                  ";" "C:/Users/lhu/Aspell/bin"
-                  ";" "C:/Python27")))
- )
-
-;; exec-path........................
-;; win...gtk...pscp...gadgets.......
-;; win...gnuwin32...gs...python.....
-;; win...gsview...w3m...aspell......
-(when (eq system-type 'windows-nt)
-  (mapc (function (lambda (x) (add-to-list 'exec-path x)))
-        '("C:/Program Files (x86)/Common Files/GTK/2.0/bin"
-          "C:/Program Files (x86)/PuTTY"
-          "~/gadgets"
-          "~/mingw64/bin"
-          "~/gnuwin32/bin"
-          "~/texlive/bin/win32"
-          "~/gs/gs9.07/bin"
-          "C:/Python27"
-          "~/gs/Ghostgum/gsview"
-          "C:/Program Files/emacs-24.2/w3m"
-          "~/Aspell/bin")))
-
 ;;; aspell...personal dic...........
 (require 'ispell)
 (setq ispell-program-name "aspell")
@@ -455,6 +410,13 @@
 ;; ...never expire password.........
 (setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave")
 (setq password-cache-expiry nil)
+
+;; Semantic and auto-config integration
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(define-key ac-mode-map [(meta return)] 'auto-complete)
 
 ;; .............
 ;; Start emacs server

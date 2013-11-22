@@ -128,10 +128,10 @@
 ;; muse ....... muse-init.el ........ customize .......
 ;; ........
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(appt-display-diary nil)
  '(appt-display-duration 5)
  '(appt-message-warning-time 0)
@@ -152,13 +152,13 @@
  '(muse-publish-desc-transforms (quote (muse-wiki-publish-pretty-title muse-wiki-publish-pretty-interwiki muse-publish-escape-specials-in-string)))
  '(muse-wiki-publish-small-title-words (quote ("the" "and" "at" "on" "of" "for" "in" "an" "a" "page" "anime")))
  '(org-file-apps (quote (("txt" . emacs) ("tex" . emacs) ("ltx" . emacs) ("org" . emacs) ("el" . emacs) ("gb" . emacs))))
- )
+ '(semantic-c-dependency-system-include-path (quote ("/usr/include"))))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(emms-playlist-selected-face ((t (:background "cornflower blue" :foreground "black" :weight bold))))
  '(emms-playlist-track-face ((t (:foreground "red"))))
  '(muse-link ((t (:foreground "blue" :underline "blue" :weight bold))))
@@ -169,5 +169,45 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;;; my-custom.el end here
+;; set shell path...................
+;; mac...texlive...others...........
+;; win...putty...plink..............
+(cond
+ ((eq system-type 'darwin)
+  (setenv "PATH"
+          (concat "/usr/local/texlive/2012basic/bin/universal-darwin" ":"
+                  "/opt/local/bin" ":"
+                  (getenv "PATH"))))
+ ((eq system-type 'windows-nt)
+  (setenv "PATH"
+          (concat (getenv "PATH")
+                  ";" "C:/Program Files (x86)/PuTTY"
+                  ";" "C:/Users/lhu/Workspace/texlive/bin/win32"
+                  ";" "C:/Users/lhu/Workspace/gnuwin32/bin"
+                  ";" "C:/Users/lhu/Workspace/mingw64/bin"
+                  ";" "C:/Users/lhu/Workspace/gadgets"
+                  ";" "C:/Users/lhu/Aspell/bin"
+                  ";" "C:/Python27")))
+ )
 
+;; exec-path........................
+;; win...gtk...pscp...gadgets.......
+;; win...gnuwin32...gs...python.....
+;; win...gsview...w3m...aspell......
+(when (eq system-type 'windows-nt)
+  (mapc (function (lambda (x) (add-to-list 'exec-path x)))
+        '("C:/Program Files (x86)/Common Files/GTK/2.0/bin"
+          "C:/Program Files (x86)/PuTTY"
+          "~/gadgets"
+          "~/mingw64/bin"
+          "~/gnuwin32/bin"
+          "~/texlive/bin/win32"
+          "~/gs/gs9.07/bin"
+          "C:/Python27"
+          "~/gs/Ghostgum/gsview"
+          "C:/Program Files/emacs-24.2/w3m"
+          "~/Aspell/bin")))
+
+(setq stack-trace-on-error t)
+
+;;; my-custom.el end here

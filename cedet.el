@@ -52,22 +52,22 @@
 (add-to-list 'completion-at-point-functions 'semantic-completion-at-point-function)
 ;;(define-key c-mode-base-map [(meta ?/)] 'semantic-ia-complete-symbol-menu)
 
-(ede-cpp-root-project "VDTI"
-                      :name "VDTI Virtual Devices"
-                      :ftp-site "/pscp:lhu@pek2-dbc102:"
-                      :file "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/devices/pci/vdti/Subdir.sc"
-                      :include-path '("/"
-                                      "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/devices/public")
-                      :system-include-path '("/pscp:lhu@pek2-dbc102:/usr/include"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/public"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmcore/public"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmcore/include"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmkernel/public"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmkernel/private"
-                                             "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/lib/public")
-                      :spp-table '(("VMX86_DEBUG" . "")
-                                   ("VMX86_DEVEL" . ""))
-                      )
+;; (ede-cpp-root-project "VDTI"
+;;                       :name "VDTI Virtual Devices"
+;;                       :ftp-site "/pscp:lhu@pek2-dbc102:"
+;;                       :file "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/devices/pci/vdti/Subdir.sc"
+;;                       :include-path '("/"
+;;                                       "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/devices/public")
+;;                       :system-include-path '("/pscp:lhu@pek2-dbc102:/usr/include"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/public"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmcore/public"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmcore/include"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmkernel/public"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/vmkernel/private"
+;;                                              "/pscp:lhu@pek2-dbc102:/dbc/pek2-dbc102/lhu/git-repo/vdti-main/bora/lib/public")
+;;                       :spp-table '(("VMX86_DEBUG" . "")
+;;                                    ("VMX86_DEVEL" . ""))
+;;                       )
 
 ;; (ede-cpp-root-project "Dict"
 ;;                       :name "Dict (hashtable)"

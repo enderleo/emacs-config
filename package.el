@@ -18,6 +18,7 @@
               "cl"
               "dropdown-list"
               "ecb"
+              "magit"
               "auto-complete"))
            (missing-package-list
             (delq nil (mapcar (lambda (x)

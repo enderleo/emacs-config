@@ -135,6 +135,12 @@
  '(appt-display-diary nil)
  '(appt-display-duration 5)
  '(appt-message-warning-time 0)
+ '(comint-completion-addsuffix t)
+ '(comint-completion-autolist t)
+ '(comint-input-ignoredups t)
+ '(comint-move-point-for-output t)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
  '(diff-switches "-utbB")
  '(ediff-split-window-function (quote split-window-horizontally))
  '(grep-command "grep -nH \"\"")
@@ -151,6 +157,7 @@
  '(muse-latex-header "~/.emacs.d/templates/header.tex")
  '(muse-publish-desc-transforms (quote (muse-wiki-publish-pretty-title muse-wiki-publish-pretty-interwiki muse-publish-escape-specials-in-string)))
  '(muse-wiki-publish-small-title-words (quote ("the" "and" "at" "on" "of" "for" "in" "an" "a" "page" "anime")))
+ '(org-agenda-files (quote ("~/workspace/projects/snippets/todo/my-project.org" "~/workspace/projects/snippets/todo/work.org")))
  '(org-file-apps (quote (("txt" . emacs) ("tex" . emacs) ("ltx" . emacs) ("org" . emacs) ("el" . emacs) ("gb" . emacs))))
  '(semantic-c-dependency-system-include-path (quote ("/usr/include"))))
 
@@ -209,5 +216,15 @@
           "~/Aspell/bin")))
 
 (setq stack-trace-on-error t)
+
+;; org...todo-list.................
+;; sequences...types...faces.......
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "STARTED(s@)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELED(c@)")
+        (type "Leon(l)" "Peyton(p)" "|" "DONE(d)")))
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning) ("STARTED" . "cyan")
+        ("BLOCKED" . (:foreground "dark violet" :weight bold))
+        ("CANCELED". (:forground "dark orange" :weight bold))))
 
 ;;; my-custom.el end here

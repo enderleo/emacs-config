@@ -418,6 +418,90 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (define-key ac-mode-map [(meta return)] 'auto-complete)
 
+;; multi-term....bash...............
+;; eshell....color....completion....
+(require 'multi-term)
+(setq multi-term-program "/usr/bin/bash")
+
+(defun last-term-buffer (l)
+  "Return most recently used term buffer."
+  (when l
+	(if (eq 'term-mode (with-current-buffer (car l) major-mode))
+	    (car l) (last-term-buffer (cdr l)))))
+
+(defun get-term ()
+  "Switch to the term buffer last used, or create a new one if
+    none exists, or if the current buffer is already a term."
+  (interactive)
+  (let ((b (last-term-buffer (buffer-list))))
+	(if (or (not b) (eq 'term-mode major-mode))
+	    (multi-term)
+	  (switch-to-buffer b))))
+
+(custom-set-variables
+ '(comint-scroll-to-bottom-on-input t)  ; always insert at the bottom
+ '(comint-scroll-to-bottom-on-output t) ; always add output at the bottom
+ '(comint-scroll-show-maximum-output t) ; scroll to show max possible output
+ '(comint-completion-autolist t)        ; show completion list when ambiguous
+ '(comint-input-ignoredups t)           ; no duplicates in command history
+ '(comint-completion-addsuffix t)       ; insert space/slash after file completion
+ )
+
+; interpret and use ansi color codes in shell output windows
+(ansi-color-for-comint-mode-on)
+
+; make completion buffers disappear after 3 seconds.
+(add-hook 'completion-setup-hook
+  (lambda () (run-at-time 20 nil
+    (lambda () (delete-windows-on "*Completions*")))))
+
+;; evernote....key.bindings......
+(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
+(setq evernote-developer-token
+      "S=s130:U=dff5f0:E=14e9b2a2399:C=1474378f3d0:P=1cd:A=en-devtoken:V=2:H=22524cf3dcd8b1feb885249f12a6e773")
+(setenv "EN_PROXY" (getenv "http_proxy"))
+(require 'evernote-mode)
+(global-set-key "\C-cec" 'evernote-create-note)
+(global-set-key "\C-ceo" 'evernote-open-note)
+(global-set-key "\C-ces" 'evernote-search-notes)
+(global-set-key "\C-ceS" 'evernote-do-saved-search)
+(global-set-key "\C-cew" 'evernote-write-note)
+(global-set-key "\C-cep" 'evernote-post-region)
+(global-set-key "\C-ceb" 'evernote-browser)
+
+;; mu4e....email.client........
+;; smtpmail....send.email......
+(require 'mu4e)
+(setq mu4e-maildir "~/workspace/mail/vmware")
+(setq mu4e-mail-dir-shortcuts
+      '(("/Inbox"      . ?i)
+        ("/sent"       . ?s)
+        ("/Code"       . ?c)))
+(setq mu4e-get-mail-command "mbsync vmware")
+(setq user-mail-address "lhu@vmware.com"
+      user-full-name "Leonhard Hu"
+      mu4e-compose-signature
+        (concat
+          "Thanks,\n"
+          "Leonhard Hu\n"))
+(setq mu4e-view-show-images t)
+(setq mu4e-attachment-dir "~/workspace/trash")
+(cond
+  ((eq system-type 'darwin)
+   (setq mu4e-html2text-command
+         "textutil -stdin -format html -convert txt -stdout"))
+  ((eq system-type 'gnu/linux)
+   (setq mu4e-html2text-command
+         "html2text -utf8 -width 80")))
+(setq message-kill-buffer-on-exit t)
+
+(require 'smtpmail)
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-stream-type 'starttls
+      smtpmail-default-smtp-server "email.vmware.com"
+      smtpmail-smtp-server "email.vmware.com"
+      smtpmail-smtp-service 587)
+
 ;; .............
 ;; Start emacs server
 (server-start)

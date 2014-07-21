@@ -4,3 +4,6 @@
 [submodule "site-lisp/auto-compile"]
 	path = site-lisp/auto-compile
 	url = https://github.com/tarsius/auto-compile.git
+[submodule "site-lisp/packed"]
+	path = site-lisp/packed
+	url = https://github.com/tarsius/packed.git

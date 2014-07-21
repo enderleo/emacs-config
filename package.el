@@ -19,6 +19,7 @@
               "dropdown-list"
               "ecb"
               "magit"
+              "multi-term"
               "auto-complete"))
            (missing-package-list
             (delq nil (mapcar (lambda (x)

@@ -75,7 +75,9 @@ tried.  This is typically chained with `c-lineup-ObjC-method-call'."
                                    ))))
 
 (defun vmware-c-mode-setup ()
-  (c-set-style "vmware-c-c++-engineering-manual"))
+  (c-set-style "vmware-c-c++-engineering-manual")
+  (setq linum-format "%d ")
+  (linum-mode))
 
 ; These are what actually make our style take effect in C, C++, and Obj-C modes
 (add-hook 'c-mode-hook 'vmware-c-mode-setup)

@@ -6,10 +6,11 @@
 (auto-fill-mode 1)
 (setq default-justification 'full)
 (setq adaptive-fill-mode nil)
-(setq fill-column 70)
+(setq fill-column 80)
 (add-hook 'text-mode-hook 'auto-fill-mode)
 ;; .....
-(set-scroll-bar-mode nil)
+(if (display-graphic-p)
+    (set-scroll-bar-mode nil))
 ;; ......
 (setq inhibit-startup-message t)
 ;; .....

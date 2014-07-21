@@ -227,4 +227,23 @@
         ("BLOCKED" . (:foreground "dark violet" :weight bold))
         ("CANCELED". (:forground "dark orange" :weight bold))))
 
+;; brower...chromium...............
+(when window-system
+  (cond
+   ((eq system-type 'gnu/linux)
+    (setq browse-url-browser-function 'browse-url-firefox
+          browse-url-new-window-flag t
+          browse-url-firefox-new-window-is-tab t))
+   ((eq system-type 'darwin)
+    (setq browse-url-browser-function 'browser-url-default-macosx-browser))
+   ((eq system-type 'windows-nt)
+    (setq browse-url-browser-function 'browser-url-default-windows-browser))
+   ))
+
+;; auto-compile....................
+(setq load-prefer-newer t)
+(require 'auto-compile)
+(auto-compile-on-load-mode 1)
+(auto-compile-on-save-mode 1)
+
 ;;; my-custom.el end here

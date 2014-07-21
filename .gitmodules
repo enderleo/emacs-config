@@ -1,3 +1,6 @@
 [submodule "site-lisp/evernote-mode"]
 	path = site-lisp/evernote-mode
 	url = https://github.com/pymander/evernote-mode.git
+[submodule "site-lisp/auto-compile"]
+	path = site-lisp/auto-compile
+	url = https://github.com/tarsius/auto-compile.git

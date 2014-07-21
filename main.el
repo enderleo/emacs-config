@@ -237,7 +237,8 @@
 ;; w3m...configuration...
 (when (require 'w3m-load nil t)
   (setq mm-text-html-renderer 'w3m)
-  (setq browse-url-browser-function 'w3m-browse-url)
+  (unless window-system
+    (setq browse-url-browser-function 'w3m-browse-url))
   (setq w3m-coding-system 'utf-8
         w3m-file-coding-system 'utf-8
         w3m-file-name-coding-system 'utf-8
@@ -460,14 +461,14 @@
 (setq evernote-developer-token
       "S=s130:U=dff5f0:E=14e9b2a2399:C=1474378f3d0:P=1cd:A=en-devtoken:V=2:H=22524cf3dcd8b1feb885249f12a6e773")
 (setenv "EN_PROXY" (getenv "http_proxy"))
-(require 'evernote-mode)
-(global-set-key "\C-cec" 'evernote-create-note)
-(global-set-key "\C-ceo" 'evernote-open-note)
-(global-set-key "\C-ces" 'evernote-search-notes)
-(global-set-key "\C-ceS" 'evernote-do-saved-search)
-(global-set-key "\C-cew" 'evernote-write-note)
-(global-set-key "\C-cep" 'evernote-post-region)
-(global-set-key "\C-ceb" 'evernote-browser)
+(when (require 'evernote-mode)
+  (global-set-key "\C-cec" 'evernote-create-note)
+  (global-set-key "\C-ceo" 'evernote-open-note)
+  (global-set-key "\C-ces" 'evernote-search-notes)
+  (global-set-key "\C-ceS" 'evernote-do-saved-search)
+  (global-set-key "\C-cew" 'evernote-write-note)
+  (global-set-key "\C-cep" 'evernote-post-region)
+  (global-set-key "\C-ceb" 'evernote-browser))
 
 ;; mu4e....email.client........
 ;; smtpmail....send.email......

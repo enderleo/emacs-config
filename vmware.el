@@ -81,6 +81,7 @@ tried.  This is typically chained with `c-lineup-ObjC-method-call'."
 
 (defun vmware-c-mode-setup ()
   (c-set-style "vmware-c-c++-engineering-manual")
+  (setq linum-format "%d ")
   (linum-mode)
   (setq tab-stop-list (number-sequence 3 210 3))
   ;; (local-set-key [tab] 'tab-to-tab-stop))

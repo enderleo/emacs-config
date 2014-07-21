@@ -234,6 +234,22 @@
   (abbrev-mode t))
 (add-hook 'shell-mode-hook 'ywb-shell-mode-hook)
 
+;; ......lhu..........configuration........
+
+;; color-theme
+(add-to-list 'load-path (concat extra-emacs-directory
+                                "/site-map/color-theme/color-theme.el"))
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+    (color-theme-initialize)
+    (if (display-graphic-p)
+        (if (eq system-type 'windows-nt)
+            (color-theme-calm-forest)
+          (color-theme-gray30))
+      (color-theme-renegade))
+      ))
+
 ;; w3m...configuration...
 (when (require 'w3m-load nil t)
   (setq mm-text-html-renderer 'w3m)
@@ -254,32 +270,22 @@
                '("-o" "http_proxy=http://proxy.vmware.com:3128/")))
   )
 
-;; color-theme
-(add-to-list 'load-path (concat extra-emacs-directory
-                                "/site-map/color-theme/color-theme.el"))
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-    (color-theme-initialize)
-    (if (eq system-type 'windows-nt)
-        (color-theme-calm-forest)
-      (color-theme-calm-forest))))
-
 ;; Tabbar.......tabbar-ruler.......tabbar face
-(require 'tabbar)
-(tabbar-mode 1)
-(define-prefix-command 'lwindow-map)
-(global-set-key (kbd "<M-up>") 'tabbar-backward-group)
-(global-set-key (kbd "<M-down>") 'tabbar-forward-group)
-(global-set-key (kbd "<M-left>") 'tabbar-backward)
-(global-set-key (kbd "<M-right>") 'tabbar-forward)
-
-;; tabbar-ruler
-(setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
-;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
-;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
-;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
-(require 'tabbar-ruler)
+(when (display-graphic-p)
+  (require 'tabbar)
+  (tabbar-mode 1)
+  (define-prefix-command 'lwindow-map)
+  (global-set-key (kbd "<M-up>") 'tabbar-backward-group)
+  (global-set-key (kbd "<M-down>") 'tabbar-forward-group)
+  (global-set-key (kbd "<M-left>") 'tabbar-backward)
+  (global-set-key (kbd "<M-right>") 'tabbar-forward)
+      
+  ;; tabbar-ruler
+  (setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
+  (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
+  ;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
+  ;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
+  (require 'tabbar-ruler))
 
 ;; tabbar face
 (defun set-tabbar-look ()
@@ -322,19 +328,18 @@
                         :foreground "black")
     )
   )
-
-(set-tabbar-look)
+(if (display-graphic-p)
+    (set-tabbar-look))
 
 ;; minor...configurations...linum...
 ;; encoding....max specpdl size.....
 ;; font...family...size.............
-(setq linum-format "%d ")
 (when (eq system-type 'windows-nt)
   (prefer-coding-system 'utf-8-unix)
   (setq default-buffer-file-coding-system 'utf-8-unix))
 (setq max-specpdl-size 1000)
 (cond ((eq system-type 'darwin)
-       (set-default-font "Everson Mono-16"))
+       (set-default-font "Courier New-16"))
       ((eq system-type 'windows-nt)
        (set-default-font "Courier New-12")))
 
@@ -502,6 +507,9 @@
       smtpmail-default-smtp-server "email.vmware.com"
       smtpmail-smtp-server "email.vmware.com"
       smtpmail-smtp-service 587)
+
+;; node.js...js-mode...espresso...
+(require 'nodejs)
 
 ;; .............
 ;; Start emacs server

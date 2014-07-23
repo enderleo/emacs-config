@@ -247,10 +247,12 @@
         (if (eq system-type 'windows-nt)
             (color-theme-calm-forest)
           (color-theme-gray30))
-      (color-theme-renegade))
+      (if (eq system-type 'gnu/linux)
+          (color-theme-clarity)
+        (color-theme-renegade)))
       ))
 
-;; w3m...configuration...
+;; w2m...configuration...
 (when (require 'w3m-load nil t)
   (setq mm-text-html-renderer 'w3m)
   (unless window-system

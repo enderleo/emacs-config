@@ -196,13 +196,18 @@
                   ";" "C:/Users/lhu/Workspace/gadgets"
                   ";" "C:/Users/lhu/Aspell/bin"
                   ";" "C:/Python27")))
+ ((eq system-type 'gnu/linux)
+  (setenv "PATH"
+          (concat "/dbc/pek2-dbc102/lhu/gadgets/bin:"
+                  (getenv "PATH"))))
  )
 
 ;; exec-path........................
 ;; win...gtk...pscp...gadgets.......
 ;; win...gnuwin32...gs...python.....
 ;; win...gsview...w3m...aspell......
-(when (eq system-type 'windows-nt)
+(cond
+ ((eq system-type 'windows-nt)
   (mapc (function (lambda (x) (add-to-list 'exec-path x)))
         '("C:/Program Files (x86)/Common Files/GTK/2.0/bin"
           "C:/Program Files (x86)/PuTTY"
@@ -215,6 +220,10 @@
           "~/gs/Ghostgum/gsview"
           "C:/Program Files/emacs-24.2/w3m"
           "~/Aspell/bin")))
+ ;; ((eq system-type 'gnu/linux)
+ ;;  (mapc (function (lambda (x) (add-to-list 'exec-path x)))
+ ;;        '("/dbc/pek2-dbc102/lhu/gadgets/bin")))
+)
 
 (setq stack-trace-on-error t)
 

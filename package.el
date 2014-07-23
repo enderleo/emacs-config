@@ -9,8 +9,8 @@
 ;; Packages to install first (check if emacs is 24 or higher)
 (if (>= emacs-major-version 24)
     (let* ((extra-package-list
-            '("tabbar"
-              "tabbar-ruler"
+            '(;;"tabbar"
+              ;;"tabbar-ruler"
               "adaptive-wrap"
               "auctex"
               "yasnippet"

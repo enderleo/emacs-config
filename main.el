@@ -260,69 +260,74 @@
 (eval-after-load "color-theme"
   '(progn
     (color-theme-initialize)
-    (if (eq system-type 'windows-nt)
-        (color-theme-calm-forest)
-      (color-theme-calm-forest))))
+    (cond
+     ((eq system-type 'windows-nt)
+      (color-theme-calm-forest))
+     ((not window-system)
+      (color-theme-clarity))
+     (color-theme-calm-forest))))
 
 ;; Tabbar.......tabbar-ruler.......tabbar face
-(require 'tabbar)
-(tabbar-mode 1)
-(define-prefix-command 'lwindow-map)
-(global-set-key (kbd "<M-up>") 'tabbar-backward-group)
-(global-set-key (kbd "<M-down>") 'tabbar-forward-group)
-(global-set-key (kbd "<M-left>") 'tabbar-backward)
-(global-set-key (kbd "<M-right>") 'tabbar-forward)
+;; only use tabbar in gui.....................
+(if window-system
+    ((require 'tabbar)
+     (tabbar-mode 1)
+     (define-prefix-command 'lwindow-map)
+     (global-set-key (kbd "<M-up>") 'tabbar-backward-group)
+     (global-set-key ((kbd "") "<M-down>") 'tabbar-forward-group)
+     (global-set-key (kbd "<M-left>") 'tabbar-backward)
+     (global-set-key (kbd "<M-right>") 'tabbar-forward)
 
-;; tabbar-ruler
-(setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
-;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
-;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
-;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
-(require 'tabbar-ruler)
+     ;; tabbar-ruler
+     (setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
+     ;; (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
+     ;; (setq tabbar-ruler-popup-menu 't) ; If you want a popup menu.
+     ;; (setq tabbar-ruler-popup-toolbar 't) ; If you want a popup toolbar
+     (require 'tabbar-ruler)
 
-;; tabbar face
-(defun set-tabbar-look ()
-  "configure how tabbar looks"
-  (let ((tabbar-title-font
-         (cond ((eq system-type 'darwin)
-                "Monaco")
-               ((eq system-type 'gnu/linux)
-                "Bitstream Sans Mono")
-               ((eq system-type 'windows-nt)
-                "Courier New"))))
-    ;; set default face: font-family, background, foreground, size
-    ;; (set-face-attribute 'tabbar-default nil
-    ;;                     ;; :family tabbar-title-font
-    ;;                     :background "gray60"
-    ;;                     :foreground "black"
-    ;;                     :height 1)
-    ;; set button face：outer-box size and color
-    (set-face-attribute 'tabbar-button nil
-                        :inherit 'tabbar-default
-                        :background "#37B371"
-                        :box '(:line-width 2
-                                           :color "yellow")
-                        :width 'ultra-expanded)
-    ;; set selected tab face: color, font family, outer-box size and color
-    (set-face-attribute 'tabbar-selected nil
-                        :family tabbar-title-font
-                        :background "gray80"
-                        :foreground "purple"
-                        :weight 'bold
-                        :box '(:line-width 3
-                                           :color "cyan")
-                        :height 1.3)
-    ;; set unselected tab face: color
-    (set-face-attribute 'tabbar-unselected nil
-                        :family tabbar-title-font
-                        :background "gray50"
-                        :box '(:line-width 3
-                                           :color "dark orange")
-                        :foreground "black")
-    )
-  )
+     ;; tabbar face
+     (defun set-tabbar-look ()
+       "configure how tabbar looks"
+       (let ((tabbar-title-font
+              (cond ((eq system-type 'darwin)
+                     "Monaco")
+                    ((eq system-type 'gnu/linux)
+                     "Bitstream Sans Mono")
+                    ((eq system-type 'windows-nt)
+                     "Courier New"))))
+         ;; set default face: font-family, background, foreground, size
+         ;; (set-face-attribute 'tabbar-default nil
+         ;;                     ;; :family tabbar-title-font
+         ;;                     :background "gray60"
+         ;;                     :foreground "black"
+         ;;                     :height 1)
+         ;; set button face：outer-box size and color
+         (set-face-attribute 'tabbar-button nil
+                             :inherit 'tabbar-default
+                             :background "#37B371"
+                             :box '(:line-width 2
+                                                :color "yellow")
+                             :width 'ultra-expanded)
+         ;; set selected tab face: color, font family, outer-box size and color
+         (set-face-attribute 'tabbar-selected nil
+                             :family tabbar-title-font
+                             :background "gray80"
+                             :foreground "purple"
+                             :weight 'bold
+                             :box '(:line-width 3
+                                                :color "cyan")
+                             :height 1.3)
+         ;; set unselected tab face: color
+         (set-face-attribute 'tabbar-unselected nil
+                             :family tabbar-title-font
+                             :background "gray50"
+                             :box '(:line-width 3
+                                                :color "dark orange")
+                             :foreground "black")
+         )
+       )
 
-(set-tabbar-look)
+     (set-tabbar-look)))
 
 ;; minor...configurations...linum...
 ;; encoding....max specpdl size.....

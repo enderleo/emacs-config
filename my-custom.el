@@ -158,7 +158,7 @@
  '(muse-latex-header "~/.emacs.d/templates/header.tex")
  '(muse-publish-desc-transforms (quote (muse-wiki-publish-pretty-title muse-wiki-publish-pretty-interwiki muse-publish-escape-specials-in-string)))
  '(muse-wiki-publish-small-title-words (quote ("the" "and" "at" "on" "of" "for" "in" "an" "a" "page" "anime")))
- '(org-agenda-files (quote ("~/workspace/projects/snippets/todo/my-project.org" "~/workspace/projects/snippets/todo/work.org")))
+ '(org-agenda-files (quote ("~/workspace/projects/snippets/todo/vdti.org" "~/workspace/projects/snippets/todo/my-project.org" "~/workspace/projects/snippets/todo/work.org")))
  '(org-file-apps (quote (("txt" . emacs) ("tex" . emacs) ("ltx" . emacs) ("org" . emacs) ("el" . emacs) ("gb" . emacs))))
  '(semantic-c-dependency-system-include-path (quote ("/usr/include"))))
 

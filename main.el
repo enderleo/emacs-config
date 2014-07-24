@@ -66,7 +66,7 @@
 (global-set-key (kbd "C-c j") 'ffap)
 
 ;; ................ vim . f...........
-(global-set-key (kbd "C-c a") 'wy-go-to-char)
+;; (global-set-key (kbd "C-c a") 'wy-go-to-char)
 
 ;; .... *scratch*..........................
 (global-set-key (kbd "C-c b") 'ywb-create/switch-scratch)
@@ -281,7 +281,7 @@
   (global-set-key (kbd "<M-down>") 'tabbar-forward-group)
   (global-set-key (kbd "<M-left>") 'tabbar-backward)
   (global-set-key (kbd "<M-right>") 'tabbar-forward)
-      
+
   ;; tabbar-ruler
   (setq tabbar-ruler-global-tabbar 't) ; If you want tabbar
   (setq tabbar-ruler-global-ruler 't) ; if you want a global ruler
@@ -512,6 +512,9 @@
 
 ;; node.js...js-mode...espresso...
 (require 'nodejs)
+
+;; org....agenda....todo..........
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; .............
 ;; Start emacs server
